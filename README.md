@@ -1,6 +1,7 @@
 # FuelApi
-Would like to note this is a test task, so a lot of functionality is out of scope.
-out of scope were things like error handlers, validations, etc
-The Key Points that were not realized is the:
-1. API or DataBase availability monitor.
-2. Approach to solving unexpected cases, such as restart server, etc. propably need to wrapp all crud operations in transaction, to ensure the consistency of data
+Taking into consideration the fact that this is the test task, some functions like error handlers,
+validations, etc. are out of scope.
+The Key Points that were not realized are the following:
+1. API or DataBase availability monitoring;
+2. Approach to solving the unexpected cases like server restart, etc. Probably, we need to 
+wrapp all crud operations in transaction in order to ensure the data consistency.
