@@ -5,6 +5,7 @@ using FuelService.Data.Contexts;
 using FuelService.Data.Repositories;
 using FuelService.Jobs;
 using Ninject.Modules;
+using NLog;
 using Quartz;
 using System;
 using System.Configuration;
@@ -37,7 +38,8 @@ namespace FuelService
                             JobBuilder.Create<FuelJob>().Build())
                             .AddTrigger(() =>
                                 TriggerBuilder.Create()
-                                    .WithSimpleSchedule(builder => builder.WithIntervalInSeconds(60).RepeatForever()).Build())                                    
+                                    .WithSimpleSchedule(builder => builder.WithIntervalInSeconds(Convert.ToInt32(ConfigurationManager.AppSettings["JobTimerInSeconds"]))
+                                                                          .RepeatForever()).Build())                                    
                         );
                 });
             });   
@@ -48,7 +50,8 @@ namespace FuelService
     {
         public override void Load()
         {
-            Bind<DataContext>().ToMethod(c=>new DataContext());
+            Bind<DataContext>().ToMethod(c => new DataContext()).InThreadScope();            
+            Bind<ILogger>().ToMethod(l => LogManager.GetCurrentClassLogger());            
             Bind<IFuelRepository>().To<FuelRepository>().InTransientScope();            
             Bind<IJsonReader>().To<JsonReader>().InTransientScope();
             Bind<IHttpClient>().To<HttpClient>().InTransientScope();            
@@ -56,7 +59,7 @@ namespace FuelService
                                                                 .WithConstructorArgument("getLastDays", Convert.ToInt32(ConfigurationManager.AppSettings["getLastDays"]))
                                                                 .WithConstructorArgument("chunkSize", Convert.ToInt32(ConfigurationManager.AppSettings["chunkSize"]))
                                                                 .WithConstructorArgument("serviceApi", ConfigurationManager.AppSettings["serviceApi"]);
-
+            
         }
     }
 }

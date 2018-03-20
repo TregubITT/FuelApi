@@ -1,4 +1,5 @@
 ﻿using FuelService.Core.Services;
+using NLog;
 using Quartz;
 using System;
 
@@ -7,15 +8,25 @@ namespace FuelService.Jobs
     public class FuelJob : IJob
     {
         private readonly IFuelService _fuel;
-        public FuelJob(IFuelService fuel)
+        private readonly ILogger _logger;
+
+        public FuelJob(IFuelService fuel, ILogger logger)
         {
+            _logger = logger;
             _fuel = fuel;
         }
 
         public void Execute(IJobExecutionContext context)
         {
-            Console.WriteLine("The current time is: {0}", DateTime.Now);            
-            _fuel.Process();
+            try
+            {                
+                Console.WriteLine("The current time is: {0}", DateTime.Now);
+                _fuel.Process();
+            }
+            catch(Exception ex)
+            {
+                _logger.Error(ex.Message);
+            }
         }
     }
 }

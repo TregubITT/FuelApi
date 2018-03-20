@@ -10,15 +10,15 @@ namespace FuelService.Core
     public class JsonReader : IJsonReader
     {
         public void Process(string responce, Action<FuelEntity> dataAction)
-        {           
+        {
             JObject serviceRresponce = JObject.Parse(responce);
-            IList<JToken> results = serviceRresponce["series"].Children()["data"].Children().ToList();
-            
-            foreach (JToken result in results)
-            {                
-                DateTime.TryParseExact(result.First.ToObject<string>(), "yyyyMMdd", CultureInfo.DefaultThreadCurrentCulture, DateTimeStyles.None, out DateTime date);
+
+            foreach (JToken result in serviceRresponce.SelectTokens("$.series[*].data[*]"))
+            {
+                DateTime.TryParseExact(result.First.ToObject<string>(), "yyyyMMdd",
+                    CultureInfo.CurrentUICulture, DateTimeStyles.None, out DateTime date);
                 var price = result.Last.ToObject<decimal>();
-                
+
                 dataAction(new FuelEntity() { Date = date.Date, Price = price });
             }
         }
