@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelService", "FuelService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelService.Core", "FuelService.Core\FuelService.Core.csproj", "{41A7DEA3-2C13-4452-BA90-6F43037D5142}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelService.Data", "FuelService.Data\FuelService.Data.csproj", "{83DF0ABC-E58C-4AA8-B64D-A9DD98B4CEFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelService.DataLayer", "FuelService.Data\FuelService.DataLayer.csproj", "{83DF0ABC-E58C-4AA8-B64D-A9DD98B4CEFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelService.Domain", "FuelService.Domain\FuelService.Domain.csproj", "{A47B11CE-3444-4D15-A59D-FDE4BEBF5851}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelService.Common", "FuelService.Domain\FuelService.Common.csproj", "{A47B11CE-3444-4D15-A59D-FDE4BEBF5851}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{C99FAB07-59EE-4494-869B-3D90C44211AE}"
 EndProject

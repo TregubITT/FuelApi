@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\HttpClient.cs" />
+    <Compile Include="Common\IHttpClient.cs" />
     <Compile Include="IJsonReader.cs" />
     <Compile Include="JsonReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,13 +54,13 @@
     <Compile Include="Services\IFuelService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FuelService.Data\FuelService.Data.csproj">
+    <ProjectReference Include="..\FuelService.Data\FuelService.DataLayer.csproj">
       <Project>{83df0abc-e58c-4aa8-b64d-a9dd98b4cefa}</Project>
-      <Name>FuelService.Data</Name>
+      <Name>FuelService.DataLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FuelService.Domain\FuelService.Domain.csproj">
+    <ProjectReference Include="..\FuelService.Domain\FuelService.Common.csproj">
       <Project>{a47b11ce-3444-4d15-a59d-fde4bebf5851}</Project>
-      <Name>FuelService.Domain</Name>
+      <Name>FuelService.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

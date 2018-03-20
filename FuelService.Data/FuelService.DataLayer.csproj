@@ -59,9 +59,9 @@
     <Compile Include="Repositories\FuelRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FuelService.Domain\FuelService.Domain.csproj">
+    <ProjectReference Include="..\FuelService.Domain\FuelService.Common.csproj">
       <Project>{a47b11ce-3444-4d15-a59d-fde4bebf5851}</Project>
-      <Name>FuelService.Domain</Name>
+      <Name>FuelService.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

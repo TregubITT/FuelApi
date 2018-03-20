@@ -12,6 +12,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using FuelService.Domain.Entities;
 using FuelService.Domain.Objects;
+using FuelService.Core.Common;
 
 namespace FuelService.Core.Services
 {
@@ -19,14 +20,16 @@ namespace FuelService.Core.Services
     {
         private readonly IFuelRepository _repository;
         private readonly IJsonReader _jsonReader;
+        private readonly IHttpClient _httpClient;        
         private readonly int _getLastDays;
         private readonly int _chunkSize;
         private readonly string _serviceApi;
 
-        public FuelService(IFuelRepository repository, IJsonReader jsonReader, int getLastDays, int chunkSize, string serviceApi)
+        public FuelService(IFuelRepository repository, IJsonReader jsonReader, IHttpClient httpClient, int getLastDays, int chunkSize, string serviceApi)
         {
             _repository = repository;
             _jsonReader = jsonReader;
+            _httpClient = httpClient;
             _getLastDays = getLastDays;
             _chunkSize = chunkSize;
             _serviceApi = serviceApi;
@@ -36,7 +39,7 @@ namespace FuelService.Core.Services
         {
             var fuelEntities = new List<FuelEntity>();
 
-            _jsonReader.Process(GetResponceFromApi(_serviceApi), fuel =>
+            _jsonReader.Process(_httpClient.GetResponceFromApi(_serviceApi), fuel =>
             {
                 if (fuel.Date >= DateTime.Today.AddDays(-_getLastDays))
                 {
@@ -58,18 +61,6 @@ namespace FuelService.Core.Services
                 _repository.BulkCreate(updateList);
 
             entities.Clear();
-        }
-
-        public string GetResponceFromApi(string uri)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
         }
     }
 }

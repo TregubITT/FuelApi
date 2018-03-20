@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using FuelService.Core;
+using FuelService.Core.Common;
 using FuelService.Core.Services;
 using FuelService.Data.Contexts;
 using FuelService.Data.Repositories;
@@ -54,6 +55,7 @@ namespace FuelService
             Bind<DataContext>().ToMethod(c=>new DataContext());
             Bind<IFuelRepository>().To<FuelRepository>().InTransientScope();            
             Bind<IJsonReader>().To<JsonReader>().InTransientScope();
+            Bind<IHttpClient>().To<HttpClient>().InTransientScope();            
             Bind<IFuelService>().To<Core.Services.FuelService>().InTransientScope()
                                                                 .WithConstructorArgument("getLastDays", Convert.ToInt32(ConfigurationManager.AppSettings["getLastDays"]))
                                                                 .WithConstructorArgument("chunkSize", Convert.ToInt32(ConfigurationManager.AppSettings["chunkSize"]))
