@@ -1,11 +1,6 @@
 ﻿using FuelService.Core.Services;
-using FuelService.Domain.Entities;
 using Quartz;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FuelService.Jobs
 {

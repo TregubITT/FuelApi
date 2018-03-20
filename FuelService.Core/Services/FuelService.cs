@@ -1,18 +1,9 @@
-﻿using FuelService.Data.Repositories;
+﻿using FuelService.Core.Common;
+using FuelService.Data.Repositories;
+using FuelService.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using FuelService.Domain.Entities;
-using FuelService.Domain.Objects;
-using FuelService.Core.Common;
 
 namespace FuelService.Core.Services
 {

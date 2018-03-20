@@ -1,6 +1,5 @@
 ﻿using System;
 using FuelService.Domain.Entities;
-using FuelService.Domain.Objects;
 
 namespace FuelService.Core
 {
